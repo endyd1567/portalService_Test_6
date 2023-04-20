@@ -1,12 +1,18 @@
 package portalService.test2.user;
 
+import portalService.test2.connection.ConnectionMaker;
+
 import java.sql.*;
 
 import static portalService.test2.connection.ConnectionConst.*;
 
-public abstract class UserDao {
+public class UserDao {
 
-    public abstract Connection getConnection() throws SQLException;
+    private final ConnectionMaker connectionMaker;
+
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
 
     public User findById(Long id) throws SQLException {
         Connection con = DriverManager.getConnection(URL_JEJU, USERNAME_JEJU, PASSWORD_JEJU);
